@@ -1,6 +1,6 @@
 'use strict'
 
-            //args  function    returns
+//args  function    returns
 const add = (a, b)       =>      a + b 
 
 const numbers = [1,2,3];
