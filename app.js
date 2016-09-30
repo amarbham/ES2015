@@ -41,12 +41,13 @@ const inventory = [
 ];
 
 const createBookShop = function(inventory){
+
     return {
-        inventory: inventory,
-        inventoryValue: function(){
+        inventory,
+        inventoryValue(){
             return this.inventory.reduce((total, book) => total += book.price, 0);
         },
-        priceByTitle: function(title){
+        priceByTitle(title){
             return this.inventory.find(book => book.title == title ).price
         }
     }
@@ -56,3 +57,26 @@ const bookShop = createBookShop(inventory)
 
 console.log('inventory value', bookShop.inventoryValue())
 console.log('the price of Eloquent Javascript is ' + bookShop.priceByTitle('Eloquent Javascript'));
+
+
+function makeAjaxRequest(url, method ){
+    method = method || 'GET';
+    return method;
+};
+
+console.log(makeAjaxRequest('http://www.google.co.uk'))
+
+
+
+
+// const MathLibrary = {
+//     calculateProduct(...rest){
+//         console.log('Please use multiply method instead');
+//         return this.multiply(...rest)
+//     },
+//     multiply(a,b){
+//         return a * b;
+//     }
+// }
+
+// MathLibrary.calculateProduct(5, 2)
