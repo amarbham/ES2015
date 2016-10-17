@@ -68,7 +68,6 @@ console.log(makeAjaxRequest('http://www.google.co.uk'))
 
 
 
-
 // const MathLibrary = {
 //     calculateProduct(...rest){
 //         console.log('Please use multiply method instead');
