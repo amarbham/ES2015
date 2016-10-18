@@ -7,7 +7,6 @@ const numbers = [1,2,3];
 
 let mapped = numbers.map(number => 2 * number);
 
-
 const double = number => number * 2;
 
 console.log(double(5))
