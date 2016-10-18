@@ -70,18 +70,24 @@ console.log('the price of Eloquent Javascript is ' + bookShop.priceByTitle('Eloq
 
 // MathLibrary.calculateProduct(5, 2)
 
+
+
+
+/** Destructuring
+ *  ES5
+    var type = expense.type;
+    var amount = expense.amount;
+**/
+
 var expense = {
     type: 'business',
     amount: '£45'
 }
 
-// var type = expense.type;
-// var amount = expense.amount;
-
-//ES6 Destructuring
-
-
 //Variable 'type' == expense.type
 const { type,  amount } = expense;
 
-console.log('hello')
+
+var cats = ['Hi']
+
+module.exports = cats
