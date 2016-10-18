@@ -91,4 +91,6 @@ var expense = {
 //Variable 'type' == expense.type
 var type = expense.type;
 var amount = expense.amount;
-//# sourceMappingURL=app.js.map
+
+
+console.log('hello');

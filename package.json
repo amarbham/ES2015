@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "build": "babel src -d build --source-maps --debug"
+    "build": "babel src -d build"
   },
   "author": "",
   "license": "ISC",
