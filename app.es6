@@ -59,15 +59,6 @@ console.log('inventory value', bookShop.inventoryValue())
 console.log('the price of Eloquent Javascript is ' + bookShop.priceByTitle('Eloquent Javascript'));
 
 
-function makeAjaxRequest(url, method ){
-    method = method || 'GET';
-    return method;
-};
-
-console.log(makeAjaxRequest('http://www.google.co.uk'))
-
-
-
 // const MathLibrary = {
 //     calculateProduct(...rest){
 //         console.log('Please use multiply method instead');
@@ -79,3 +70,18 @@ console.log(makeAjaxRequest('http://www.google.co.uk'))
 // }
 
 // MathLibrary.calculateProduct(5, 2)
+
+var expense = {
+    type: 'business',
+    amount: '£45'
+}
+
+// var type = expense.type;
+// var amount = expense.amount;
+
+//ES6 Destructuring
+
+
+//Variable 'type' == expense.type
+const { type,  amount } = expense;
+console.log(type)

@@ -5,9 +5,11 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/app.js",
+            "program": "${workspaceRoot}/node_modules/babel-cli/bin/babel-node.js",
             "stopOnEntry": false,
-            "args": [],
+            "args": [
+                "${workspaceRoot}/app.js"
+            ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
             "runtimeExecutable": null,
