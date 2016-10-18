@@ -65,13 +65,6 @@ var bookShop = createBookShop(inventory);
 console.log('inventory value', bookShop.inventoryValue());
 console.log('the price of Eloquent Javascript is ' + bookShop.priceByTitle('Eloquent Javascript'));
 
-function makeAjaxRequest(url, method) {
-    method = method || 'GET';
-    return method;
-};
-
-console.log(makeAjaxRequest('http://www.google.co.uk'));
-
 // const MathLibrary = {
 //     calculateProduct(...rest){
 //         console.log('Please use multiply method instead');
@@ -98,5 +91,4 @@ var expense = {
 //Variable 'type' == expense.type
 var type = expense.type;
 var amount = expense.amount;
-
-console.log(type);
+//# sourceMappingURL=app.js.map

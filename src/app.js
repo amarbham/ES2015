@@ -84,4 +84,4 @@ var expense = {
 
 //Variable 'type' == expense.type
 const { type,  amount } = expense;
-console.log(type)
+

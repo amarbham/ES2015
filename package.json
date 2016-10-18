@@ -2,9 +2,9 @@
   "name": "ES2015",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "build": "babel app.es6 -d build"
+    "build": "babel src -d build --source-maps --debug"
   },
   "author": "",
   "license": "ISC",
