@@ -130,7 +130,7 @@ const convertDataStructure = points.map(([x, y]) => {
   };
 });
 
-const convertDataStructureInES5 = points.map(point => {
+const convertDataStructureInES5 = points.map((point) => {
   return {
     x: point[0],
     y: point[1],
@@ -157,10 +157,30 @@ const classes = [
   ['Math', '11:30AM', 'Mrs. Vitalis'],
 ];
 
-const classesAsObject = classes.map((item => {
+const classesAsObject = classes.map((item) => {
   return {
     subject: item[0],
     time: item[1],
     teacher: item[2],
   };
-}));
+});
+
+function Car(options) {
+  this.title = options.title;
+}
+
+function Toyota({ colour }) {
+  this.colour = colour;
+}
+
+Car.prototype.drive = function drive() {
+  return 'vroom';
+};
+
+
+const car = new Car({
+  title: 'focus',
+});
+
+const toyota = new Toyota({ colour: 'red' });
+
