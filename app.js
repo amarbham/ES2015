@@ -212,3 +212,19 @@ class Toyota extends Car {
 const toyota = new Toyota({ colour: 'red', title: 'daily driver' });
 
 
+class Monster {
+  constructor(options) {
+    this.name = options.name;
+    this.health = 100;
+  }
+}
+
+class Snake extends Monster {
+  bite(snake) {
+    snake.health -= 10;
+    return snake;
+  }
+}
+
+const snake = new Snake({ name: 'snake' });
+const snakey = new Snake({ name: 'snakey' });
