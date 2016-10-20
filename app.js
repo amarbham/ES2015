@@ -165,12 +165,13 @@ const classesAsObject = classes.map((item) => {
   };
 });
 
-function Car(options) {
+/** function Car(options) {
   this.title = options.title;
 }
 
-function Toyota({ colour }) {
-  this.colour = colour;
+function Toyota(options) {
+  Car.call(this, options);
+  this.colour = options.colour;
 }
 
 Car.prototype.drive = function drive() {
@@ -178,9 +179,36 @@ Car.prototype.drive = function drive() {
 };
 
 
-const car = new Car({
-  title: 'focus',
-});
+Toyota.prototype = Object.create(Car.prototype);
+Toyota.prototype.constructor = Toyota;
 
-const toyota = new Toyota({ colour: 'red' });
+const car = new Car({ title: 'work' });
+const toyota = new Toyota({ colour: 'red', title: 'Daily driver' });
+
+Toyota.prototype.honk = function honk() {
+  return 'honk';
+};
+**/
+
+class Car {
+  constructor({ title }) {
+    this.title = title;
+  }
+  drive() {
+    return 'vroom';
+  }
+}
+
+class Toyota extends Car {
+  constructor(options) {
+    super(options);
+    this.colour = options.colour;
+  }
+  honk() {
+    return 'beep';
+  }
+}
+
+const toyota = new Toyota({ colour: 'red', title: 'daily driver' });
+
 
