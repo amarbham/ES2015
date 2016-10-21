@@ -8,16 +8,13 @@ console.log(double(5));
 console.log(add);
 console.log(mapped);
 
-// Template strings
-
 
 const team = {
   members: ['James', 'Scott', 'Amar'],
   teamName: 'JARD',
   teamSummary() {
-    return this.members.map((member) => {
-      return `${member} is on ${this.teamName}`;
-    });
+    return this.members.map(member => `${member} is on ${this.teamName}`
+    );
   },
 };
 
@@ -34,11 +31,15 @@ const inventory = [{
 }];
 
 
-const createBookShop = function (inventory) {
+const createBookShop = function createBookShop(inventory) {
   return {
     inventory,
     inventoryValue() {
-      return this.inventory.reduce((total, book) => total += book.price, 0);
+      return this.inventory.reduce((curr, book) => {
+        let total = curr;
+        total += book.price;
+        return total;
+      }, 0);
     },
     priceByTitle(title) {
       return this.inventory.find(book => book.title === title).price;
@@ -51,16 +52,19 @@ const bookShop = createBookShop(inventory);
 console.log('inventory value', bookShop.inventoryValue());
 console.log(`the price of Eloquent Javascript is ${bookShop.priceByTitle('Eloquent Javascript')}`);
 
-// const MathLibrary = {
-//     calculateProduct(...rest){
-//         console.log('Please use multiply method instead');
-//         return this.multiply(...rest)
-//     },
-//     multiply(a,b){
-//         return a * b;
-//     }
-// }
-// MathLibrary.calculateProduct(5, 2)
+
+const MathLibrary = {
+  calculateProduct(...rest) {
+    console.log('Please use multiply method instead');
+    return this.multiply(...rest);
+  },
+  multiply(a, b) {
+    return a * b;
+  },
+};
+MathLibrary.calculateProduct(5, 2);
+
+
 /** Destructuring
  *  ES5
     var type = expense.type;
@@ -81,24 +85,23 @@ const {
   amount,
 } = expense;
 
+/**
+ * Default function args
+ * **/
+
 const savedFile = {
-  extension: '.jpg',
+  extension: 'jpg',
   fileName: 'repost',
   size: 14040,
 };
 
-const {
-  extension,
-  fileName,
-  size,
-} = savedFile;
+const savedFile2 = {
+  extension: 'doc',
+  size: 1650,
+};
 
-function printSummary({
-  file,
-  mb,
-  ext,
-}) {
-  return `${ext}.${file} is of size ${mb}`;
+function printSummary({ fileName = 'default', extension, size }) {
+  return `${fileName}.${extension} is of size ${size}`;
 }
 
 printSummary(savedFile);
@@ -195,7 +198,8 @@ class Car {
     this.title = title;
   }
   drive() {
-    return 'vroom';
+    this.drive = 'vroom';
+    return this.drive;
   }
 }
 
@@ -205,7 +209,8 @@ class Toyota extends Car {
     this.colour = options.colour;
   }
   honk() {
-    return 'beep';
+    this.honk = 'beep';
+    return this.honk;
   }
 }
 
@@ -220,7 +225,8 @@ class Monster {
 }
 
 class Snake extends Monster {
-  bite(snake) {
+  bite(target) {
+    const snake = target;
     snake.health -= 10;
     return snake;
   }
@@ -228,3 +234,33 @@ class Snake extends Monster {
 
 const snake = new Snake({ name: 'snake' });
 const snakey = new Snake({ name: 'snakey' });
+
+
+const promise = new Promise((resolve, reject) => {
+  const request = new XMLHttpRequest();
+
+  request.onload = () => {
+    resolve();
+  };
+
+// resolve();
+ // reject();
+});
+
+promise
+  .then(() => console.log('promise finally finished!!!!'))
+  .then(() => console.log('promise chaining'))
+  .catch(() => console.log('catched'));
+
+
+const url = 'https://jsonplaceholder.typicode.com/posts/';
+
+fetch(url)
+  // .then(response => response.json())
+  .then((response) => {
+    if (!response.ok) {
+      throw Error(response.status);
+    }
+    return response.json();
+  })
+  .then(data => console.log(data));
