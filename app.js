@@ -253,14 +253,20 @@ promise
   .catch(() => console.log('catched'));
 
 
-const url = 'https://jsonplaceholder.typicode.com/posts/';
+const url = 'https://jsonplaceholder.typicode.com/users/';
 
-fetch(url)
-  // .then(response => response.json())
-  .then((response) => {
-    if (!response.ok) {
-      throw Error(response.status);
-    }
-    return response.json();
-  })
+
+const get = function get() {
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.status);
+      }
+      return response;
+    });
+};
+
+const users = get()
+  .then(response => response.json())
   .then(data => console.log(data));
+
