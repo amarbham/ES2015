@@ -256,17 +256,29 @@ promise
 const url = 'https://jsonplaceholder.typicode.com/users/';
 
 
-const get = function get() {
-  return fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw Error(response.status);
-      }
-      return response;
+function get(url) {
+  return new Promise((resolve) => {
+    fetch(url)
+      .then((res) => {
+        const json = res.json();
+        resolve(json);
+      })
+      .catch(() => {
+        resolve({});
+      });
+  });
+}
+
+
+
+let userList = [];
+
+function getUsers() {
+  get(url)
+    .then(users => users)
+    .then((users) => {
+      userList = users;
     });
-};
+}
 
-const users = get()
-  .then(response => response.json())
-  .then(data => console.log(data));
-
+getUsers();
