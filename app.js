@@ -13,8 +13,7 @@ const team = {
   members: ['James', 'Scott', 'Amar'],
   teamName: 'JARD',
   teamSummary() {
-    return this.members.map(member => `${member} is on ${this.teamName}`
-    );
+    return this.members.map(member => `${member} is on ${this.teamName}`);
   },
 };
 
@@ -100,7 +99,11 @@ const savedFile2 = {
   size: 1650,
 };
 
-function printSummary({ fileName = 'default', extension, size }) {
+function printSummary({
+  fileName = 'default',
+  extension,
+  size
+}) {
   return `${fileName}.${extension} is of size ${size}`;
 }
 
@@ -194,7 +197,9 @@ Toyota.prototype.honk = function honk() {
 **/
 
 class Car {
-  constructor({ title }) {
+  constructor({
+    title
+  }) {
     this.title = title;
   }
   drive() {
@@ -214,7 +219,10 @@ class Toyota extends Car {
   }
 }
 
-const toyota = new Toyota({ colour: 'red', title: 'daily driver' });
+const toyota = new Toyota({
+  colour: 'red',
+  title: 'daily driver'
+});
 
 
 class Monster {
@@ -232,53 +240,55 @@ class Snake extends Monster {
   }
 }
 
-const snake = new Snake({ name: 'snake' });
-const snakey = new Snake({ name: 'snakey' });
-
-
-const promise = new Promise((resolve, reject) => {
-  const request = new XMLHttpRequest();
-
-  request.onload = () => {
-    resolve();
-  };
-
-// resolve();
- // reject();
+const snake = new Snake({
+  name: 'snake'
+});
+const snakey = new Snake({
+  name: 'snakey'
 });
 
-promise
-  .then(() => console.log('promise finally finished!!!!'))
-  .then(() => console.log('promise chaining'))
-  .catch(() => console.log('catched'));
 
+
+
+// function myHandler(responseText){
+//     console.log(responseText)
+// };
+
+// function foo(cb){
+//   var httpRequest = new XMLHttpRequest();
+//     httpRequest.onload = function(){ // when the request is loaded
+//        cb(httpRequest.responseText);// we're calling our method
+//     };
+//     httpRequest.open('GET', "https://jsonplaceholder.typicode.com/users/");
+//     httpRequest.send();
+// };
+
+// foo(myHandler);
 
 const url = 'https://jsonplaceholder.typicode.com/users/';
 
-
 function get(url) {
-  return new Promise((resolve) => {
-    fetch(url)
-      .then((res) => {
-        const json = res.json();
-        resolve(json);
-      })
-      .catch(() => {
-        resolve({});
-      });
+  return fetch(url)
+    .then(response => response.json());
+}
+
+get(url)
+  .then((data) => {
+    const users = data;
+    console.log(users);
+  });
+
+
+
+function delay() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(42);
+    }, 1000);
   });
 }
 
+delay().then((response) => {
+  console.log(response);
+});
 
-
-let userList = [];
-
-function getUsers() {
-  get(url)
-    .then(users => users)
-    .then((users) => {
-      userList = users;
-    });
-}
-
-getUsers();
