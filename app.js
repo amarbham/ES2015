@@ -102,7 +102,7 @@ const savedFile2 = {
 function printSummary({
   fileName = 'default',
   extension,
-  size
+  size,
 }) {
   return `${fileName}.${extension} is of size ${size}`;
 }
@@ -198,7 +198,7 @@ Toyota.prototype.honk = function honk() {
 
 class Car {
   constructor({
-    title
+    title,
   }) {
     this.title = title;
   }
@@ -221,7 +221,7 @@ class Toyota extends Car {
 
 const toyota = new Toyota({
   colour: 'red',
-  title: 'daily driver'
+  title: 'daily driver',
 });
 
 
@@ -241,13 +241,11 @@ class Snake extends Monster {
 }
 
 const snake = new Snake({
-  name: 'snake'
+  name: 'snake',
 });
 const snakey = new Snake({
-  name: 'snakey'
+  name: 'snakey',
 });
-
-
 
 
 // function myHandler(responseText){
@@ -265,21 +263,6 @@ const snakey = new Snake({
 
 // foo(myHandler);
 
-const url = 'https://jsonplaceholder.typicode.com/users/';
-
-function get(url) {
-  return fetch(url)
-    .then(response => response.json());
-}
-
-get(url)
-  .then((data) => {
-    const users = data;
-    console.log(users);
-  });
-
-
-
 function delay() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -288,7 +271,28 @@ function delay() {
   });
 }
 
+let promiseValue;
+
 delay().then((response) => {
-  console.log(response);
+  promiseValue = response;
 });
 
+
+const url = 'https://jsonplaceholder.typicode.com/users/';
+
+function get(url) {
+  return fetch(url)
+    .then(response => response.json());
+}
+
+const users = function users() {
+  return get(url)
+    .then(data => data);
+};
+
+
+let firstNames;
+
+users().then((user) => {
+  firstNames = user.map(user => user.name.split(' ')[0]);
+});
