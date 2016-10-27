@@ -303,5 +303,7 @@ function getByUsername(x) {
       });
     });
 }
-
-getByUsername('Kamren').then(user => console.log(user));
+let kamren = getByUsername('Kamren').then((user) => {
+  kamren = user;
+  return kamren;
+});
