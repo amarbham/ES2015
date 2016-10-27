@@ -303,7 +303,23 @@ function getByUsername(x) {
       });
     });
 }
+
 let kamren = getByUsername('Kamren').then((user) => {
   kamren = user;
   return kamren;
 });
+
+const products = [
+  { name: 'cucumber', type: 'vegetable' },
+  { name: 'banana', type: 'fruit' },
+  { name: 'celery', type: 'vegetable' },
+  { name: 'oranger', type: 'fruit' },
+];
+
+function getProductsByType(x) {
+  return products.filter((product) => {
+    return product.type === x;
+  });
+}
+
+const fruit = getProductsByType('fruit');
