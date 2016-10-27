@@ -285,14 +285,23 @@ function get(url) {
     .then(response => response.json());
 }
 
-const users = function users() {
-  return get(url)
-    .then(data => data);
-};
+const users = get(url)
+  .then(users => users);
 
 
 let firstNames;
-
-users().then((user) => {
+users.then((user) => {
   firstNames = user.map(user => user.name.split(' ')[0]);
 });
+
+
+function getByUsername(x) {
+  return users
+    .then((user) => {
+      return user.find((user) => {
+        return user.username === x;
+      });
+    });
+}
+
+getByUsername('Kamren').then(user => console.log(user));
