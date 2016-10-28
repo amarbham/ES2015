@@ -392,3 +392,14 @@ const deskTypes = desks.reduce((deskType, curr) => {
 
   return deskType;
 }, { sitting: 0, standing: 0 });
+
+function unique(arr) {
+  return arr.reduce((prev, elem) => {
+    if (!prev.find(el => el === elem)){
+      prev.push(elem);
+    }
+    return prev;
+  }, []);
+}
+
+unique([1, 1, 2, 3, 4, 4]);
