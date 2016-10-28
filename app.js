@@ -350,6 +350,7 @@ const allComputersCanRunProgram =
     return computer.ram > 16;
   });
 
+
 const someComputersCanRunProgram =
   computers.some((computer) => {
     return computer.ram > 16;
