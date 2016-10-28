@@ -340,9 +340,9 @@ const cheapFruitInStock = products
   .filter(product => product.quantity > 0);
 
 const computers = [
-  { name: 'Apple', ram: 24 },
-  { name: 'Comqaq', ram: 4 },
-  { name: 'Acer', ram: 32 },
+  { name: 'Apple', ram: 24, sale: false },
+  { name: 'Comqaq', ram: 4, sale: true },
+  { name: 'Acer', ram: 32, sale: false },
 ];
 
 const allComputersCanRunProgram =
@@ -354,4 +354,20 @@ const allComputersCanRunProgram =
 const someComputersCanRunProgram =
   computers.some((computer) => {
     return computer.ram > 16;
+  });
+
+const everyComputerOnSale =
+  computers.every((computer) => {
+    return computer.sale;
+  });
+
+const requests = [
+  { url: '/photos', status: 'complete' },
+  { url: '/albums', status: 'pending' },
+  { url: '/users', status: 'failed' },
+];
+
+const inProgress =
+  requests.some((req) => {
+    return req.status === 'pending';
   });
