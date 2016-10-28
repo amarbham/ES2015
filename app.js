@@ -371,3 +371,24 @@ const inProgress =
   requests.some((req) => {
     return req.status === 'pending';
   });
+
+const desks = [
+  { type: 'sitting' },
+  { type: 'standing' },
+  { type: 'sitting' },
+  { type: 'sitting' },
+  { type: 'standing' },
+];
+
+const deskTypes = desks.reduce((deskType, curr) => {
+  const num = deskType;
+  if (curr.type === 'sitting') {
+    num.sitting += 1;
+  }
+
+  if (curr.type === 'standing') {
+    num.standing += 1;
+  }
+
+  return deskType;
+}, { sitting: 0, standing: 0 });
