@@ -310,16 +310,47 @@ let kamren = getByUsername('Kamren').then((user) => {
 });
 
 const products = [
-  { name: 'cucumber', type: 'vegetable' },
-  { name: 'banana', type: 'fruit' },
-  { name: 'celery', type: 'vegetable' },
-  { name: 'oranger', type: 'fruit' },
+  { name: 'cucumber', type: 'vegetable', quantity: 10, price: 15 },
+  { name: 'banana', type: 'fruit', quantity: 5, price: 10 },
+  { name: 'celery', type: 'vegetable', quantity: 8, price: 20 },
+  { name: 'oranger', type: 'fruit', quantity: 9, price: 20 },
 ];
 
-function getProductsByType(x) {
+function filterProductsByType(x) {
   return products.filter((product) => {
     return product.type === x;
   });
 }
 
-const fruit = getProductsByType('fruit');
+function filterProductsByPrice(x) {
+  return products.filter((product) => {
+    return product.price <= x;
+  });
+}
+
+function filterProductsByQuantity(x) {
+  return products.filter((product) => {
+    return product.price >= x;
+  });
+}
+
+const cheapFruitInStock = products
+  .filter(product => product.type === 'fruit')
+  .filter(product => product.price <= 10)
+  .filter(product => product.quantity > 0);
+
+const computers = [
+  { name: 'Apple', ram: 24 },
+  { name: 'Comqaq', ram: 4 },
+  { name: 'Acer', ram: 32 },
+];
+
+const allComputersCanRunProgram =
+  computers.every((computer) => {
+    return computer.ram > 16;
+  });
+
+const someComputersCanRunProgram =
+  computers.some((computer) => {
+    return computer.ram > 16;
+  });
