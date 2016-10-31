@@ -309,12 +309,27 @@ let kamren = getByUsername('Kamren').then((user) => {
   return kamren;
 });
 
-const products = [
-  { name: 'cucumber', type: 'vegetable', quantity: 10, price: 15 },
-  { name: 'banana', type: 'fruit', quantity: 5, price: 10 },
-  { name: 'celery', type: 'vegetable', quantity: 8, price: 20 },
-  { name: 'oranger', type: 'fruit', quantity: 9, price: 20 },
-];
+const products = [{
+  name: 'cucumber',
+  type: 'vegetable',
+  quantity: 10,
+  price: 15,
+}, {
+  name: 'banana',
+  type: 'fruit',
+  quantity: 5,
+  price: 10,
+}, {
+  name: 'celery',
+  type: 'vegetable',
+  quantity: 8,
+  price: 20,
+}, {
+  name: 'oranger',
+  type: 'fruit',
+  quantity: 9,
+  price: 20,
+}];
 
 function filterProductsByType(x) {
   return products.filter((product) => {
@@ -339,11 +354,19 @@ const cheapFruitInStock = products
   .filter(product => product.price <= 10)
   .filter(product => product.quantity > 0);
 
-const computers = [
-  { name: 'Apple', ram: 24, sale: false },
-  { name: 'Comqaq', ram: 4, sale: true },
-  { name: 'Acer', ram: 32, sale: false },
-];
+const computers = [{
+  name: 'Apple',
+  ram: 24,
+  sale: false,
+}, {
+  name: 'Comqaq',
+  ram: 4,
+  sale: true,
+}, {
+  name: 'Acer',
+  ram: 32,
+  sale: false,
+}];
 
 const allComputersCanRunProgram =
   computers.every((computer) => {
@@ -361,24 +384,33 @@ const everyComputerOnSale =
     return computer.sale;
   });
 
-const requests = [
-  { url: '/photos', status: 'complete' },
-  { url: '/albums', status: 'pending' },
-  { url: '/users', status: 'failed' },
-];
+const requests = [{
+  url: '/photos',
+  status: 'complete',
+}, {
+  url: '/albums',
+  status: 'pending',
+}, {
+  url: '/users',
+  status: 'failed',
+}];
 
 const inProgress =
   requests.some((req) => {
     return req.status === 'pending';
   });
 
-const desks = [
-  { type: 'sitting' },
-  { type: 'standing' },
-  { type: 'sitting' },
-  { type: 'sitting' },
-  { type: 'standing' },
-];
+const desks = [{
+  type: 'sitting',
+}, {
+  type: 'standing',
+}, {
+  type: 'sitting',
+}, {
+  type: 'sitting',
+}, {
+  type: 'standing',
+}];
 
 const deskTypes = desks.reduce((deskType, curr) => {
   const num = deskType;
@@ -391,7 +423,10 @@ const deskTypes = desks.reduce((deskType, curr) => {
   }
 
   return deskType;
-}, { sitting: 0, standing: 0 });
+}, {
+  sitting: 0,
+  standing: 0,
+});
 
 function unique(arr) {
   return arr.reduce((prev, elem) => {
@@ -403,3 +438,103 @@ function unique(arr) {
 }
 
 unique([1, 1, 2, 3, 4, 4]);
+
+
+const barker = function barker(state) {
+  return {
+    bark() {
+      return console.log(`woof I am a dog ${state.name}`);
+    },
+  };
+};
+
+const driver = function driver(state) {
+  return {
+    currentSpeed() {
+      return state.speed;
+    },
+    drive() {
+      return state.position + state.speed;
+    },
+    increaseSpeed(increase) {
+      state.speed += increase;
+      return state.speed;
+    },
+  };
+};
+
+const murderRobotDog = function murderRobotDog({ name = 'Rodo', speed = 100, position = 0 }) {
+  let state = {
+    name,
+    speed,
+    position,
+  };
+
+  return Object.assign(
+    {},
+    barker(state),
+    driver(state)
+  );
+};
+
+barker({ name: 'karo' }).bark();
+
+
+const foo = murderRobotDog({ name: 'Jamesh' });
+
+
+const duck = function duck() {
+  const sound = 'Quack!!!';
+  return {
+    quack() {
+      return sound;
+    },
+  };
+};
+
+const duckey = duck();
+
+
+// const bee = function bee({ health, damage }) {
+//   let state = {
+//     health,
+//     damage,
+//   };
+
+//   return {
+//     hp() {
+//       return state.health;
+//     },
+//     strength() {
+//       return state.damage;
+//     },
+//   };
+// };
+
+
+// const queenBee = bee({ health: 100, strength: 25 });
+// const droneBee = bee({ health: 50, strength: 15 });
+// const bumbleBee = bee({ health: 10, strength: 5 });
+
+const attacker = function attacker(state) {
+  return {
+    attack(bee) {
+      const hit = bee.health - bee.strength;
+      return hit;
+    },
+  };
+};
+
+const bee = function bee({ health = 50, strength = 10 }) {
+  let state = {
+    health,
+    strength,
+  };
+
+  return Object.assign({},
+     attacker(state), state);
+};
+
+const queenBee = bee({ health: 100, strength: 25 });
+const droneBee = bee({ health: 50, strength: 15 });
+const bumbleBee = bee({ health: 10, strength: 5 });
