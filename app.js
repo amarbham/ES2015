@@ -518,15 +518,20 @@ const duckey = duck();
 
 const attacker = function attacker(state) {
   return {
-    attack(bee) {
-      const hit = bee.health - bee.strength;
-      return hit;
+    attack(target) {
+      target.health = target.health - state.strength;
+
+      if (target.health <= 0) {
+        console.log(`${target.name} died`);
+      }
+      return target;
     },
   };
 };
 
-const bee = function bee({ health = 50, strength = 10 }) {
+const bee = function bee({ name = 'bee', health = 50, strength = 10 }) {
   let state = {
+    name,
     health,
     strength,
   };
@@ -535,6 +540,18 @@ const bee = function bee({ health = 50, strength = 10 }) {
      attacker(state), state);
 };
 
-const queenBee = bee({ health: 100, strength: 25 });
-const droneBee = bee({ health: 50, strength: 15 });
-const bumbleBee = bee({ health: 10, strength: 5 });
+const queenBee = bee({ name: 'queenBee', health: 100, strength: 25 });
+const droneBee = bee({ name: 'droneBee', health: 50, strength: 15 });
+const bumbleBee = bee({ name: 'bumbleBee', health: 10, strength: 5 });
+
+const taco = { food: 'taco' };
+const burrito = { food: 'burrito' };
+
+const cheese = 'cheese';
+const avacado = 'avacado';
+
+const cheeseyTaco = Object.assign({}, taco, { filling: [cheese] });
+const spicyBurrito = Object.assign({}, burrito, { spicy: true });
+const cheeseySpicyBurrito = Object.assign({}, burrito, spicyBurrito);
+
+Object.assign(taco, burrito);
